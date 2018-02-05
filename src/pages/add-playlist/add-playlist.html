@@ -1,0 +1,29 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>New Playlist</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form (submit)='add()'>
+        <ion-list>
+            <ion-item>
+                <ion-label color="danger" stacked *ngIf="name.invalid">{{getNameErrorMessage()}}</ion-label>
+                <ion-label color="primary" floating>Playlist Name</ion-label>
+                <ion-input [formControl]="name"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="primary" floating>Description</ion-label>
+                <ion-textarea rows="5" [formControl]="description"></ion-textarea>
+            </ion-item>
+
+            <ion-item>
+                <button ion-button block>Add Playlist</button>
+            </ion-item>
+        </ion-list>
+    </form>
+</ion-content>

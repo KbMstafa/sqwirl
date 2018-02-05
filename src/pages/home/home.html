@@ -1,14 +1,30 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>
+            Youtube playlists
+        </ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+    <button ion-button block color='light' [navPush]="pushSearch">Search</button>
+    <button ion-button block [navPush]="pushNewPlaylist">Add Playlist</button>
+
+    <ion-list>
+        <ion-item *ngFor="let playlist of playlists">
+            <h2>{{ playlist.name }} <label>• {{ playlist.videos.length }} videos</label></h2>
+            <p>{{ playlist.description }}</p>
+            <button ion-button clear large item-end *ngIf="!video" (click)='pushPlaylist(playlist)'>
+                <ion-icon ios="ios-eye" md="md-eye" color="primary"></ion-icon>
+            </button>
+
+            <button ion-button clear large item-end *ngIf="video" (click)='addToPlaylist(playlist.key)'>
+                <ion-icon ios="ios-add" md="md-add" color="secondary"></ion-icon>
+            </button>
+
+            <button ion-button clear large item-end *ngIf="!video" (click)='showConfirm(playlist.key)'>
+                <ion-icon ios="ios-trash" md="md-trash" color="danger"></ion-icon>
+            </button>
+        </ion-item>
+    </ion-list>
 </ion-content>

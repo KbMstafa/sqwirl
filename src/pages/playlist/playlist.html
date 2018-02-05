@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>playlist</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <ion-item>
+        <ion-list>
+            <ion-item>
+                <label item-start>Name:</label>
+                <ion-input [readonly]='!edit' [(formControl)]='name'></ion-input>
+            </ion-item>
+            <ion-item>
+                <label item-start>Description:</label>
+                <ion-input [readonly]='!edit' [(formControl)]='description'></ion-input>
+            </ion-item>
+        </ion-list>
+        <button ion-button clear large item-end *ngIf="edit" (click)='cancelEdit()'>
+            <ion-icon ios="ios-close" md="md-close" color="danger"></ion-icon>
+        </button>
+        <button ion-button clear large item-end *ngIf="edit" (click)='confirmEdit()'>
+            <ion-icon ios="ios-checkmark" md="md-checkmark" color="secondary"></ion-icon>
+        </button>
+        <button ion-button clear large item-end *ngIf="!edit" (click)='startEdit()'>
+            <ion-icon ios="ios-create" md="md-create" color="primary"></ion-icon>
+        </button>
+
+    </ion-item>
+
+    <ion-list>
+        <ion-item *ngFor="let video of playlist.videos">
+            <ion-thumbnail item-start>
+                <img src="{{ video.thumbnail }}" />
+            </ion-thumbnail>
+            <h2>{{ video.title }}</h2>
+            <p>{{ video.description }}</p>
+            <button ion-button clear large item-end *ngIf="edit" (click)='removeVideo(video.id)'>
+                <ion-icon ios="ios-trash" md="md-trash" color="danger"></ion-icon>
+            </button>
+            <a href="https://www.youtube.com/watch?v={{ video.id }}">View</a>
+        </ion-item>
+    </ion-list>
+</ion-content>
