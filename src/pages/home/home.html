@@ -10,7 +10,7 @@
     <button ion-button block color='light' [navPush]="pushSearch">Search</button>
     <button ion-button block [navPush]="pushNewPlaylist">Add Playlist</button>
 
-    <ion-list>
+    <ion-list *ngIf="playlists?.length > 0">
         <ion-item *ngFor="let playlist of playlists">
             <h2>{{ playlist.name }} <label>• {{ playlist.videos.length }} videos</label></h2>
             <p>{{ playlist.description }}</p>
